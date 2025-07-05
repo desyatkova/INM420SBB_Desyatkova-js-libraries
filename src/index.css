@@ -1,0 +1,51 @@
+@import url("https://use.typekit.net/jkl7xfo.css");
+
+/* Reset default styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: "komet", sans-serif;
+  font-weight: 400;
+}
+
+/* Force komet font on all headings except hero-title */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "komet", sans-serif !important;
+}
+
+.chakra-heading {
+  font-family: "komet", sans-serif !important;
+}
+
+.hero-title {
+  font-family: "major-mono-display", sans-serif !important;
+  font-weight: 400;
+  font-style: normal;
+  
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4, #ffeaa7, #fd79a8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Active timeline events highlighting */
+.planby-program-item.active-event {
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.3), rgba(255, 100, 100, 0.2)) !important;
+  border: 2px solid #ff4444 !important;
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.4) !important;
+  animation: pulse-active 2s infinite;
+}
+
+@keyframes pulse-active {
+  0% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+  50% { box-shadow: 0 0 25px rgba(255, 0, 0, 0.6); }
+  100% { box-shadow: 0 0 15px rgba(255, 0, 0, 0.4); }
+}
