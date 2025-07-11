@@ -59,7 +59,7 @@ const Artists = () => {
 
   return (
     <Box py={{ base: 16, md: 24 }} bg="white">
-      <Container maxW="container.xl" px={4}>
+      <Container maxW="container.xl" px={4} mx="auto">
         <VStack gap={{ base: 8, md: 12 }}>
           <VStack gap={4} textAlign="center">
             <Heading

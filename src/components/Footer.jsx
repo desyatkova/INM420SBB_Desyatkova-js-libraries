@@ -40,7 +40,7 @@ const Footer = () => {
 
   return (
     <Box bg="gray.900" color="white" pt={{ base: 12, md: 16 }} pb={8}>
-      <Container maxW="container.xl" px={4}>
+      <Container maxW="container.xl" px={4} mx="auto">
         <VStack gap={{ base: 8, md: 12 }}>
           <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={8} w="full">
             <VStack align={{ base: 'center', md: 'start' }} gap={4}>

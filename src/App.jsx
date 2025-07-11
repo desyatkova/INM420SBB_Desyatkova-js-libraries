@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { Box } from '@chakra-ui/react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -9,15 +10,24 @@ import Location from './components/Location';
 import Footer from './components/Footer';
 
 function App() {
+  const mapRef = useRef(null);
+
+  const scrollToMap = () => {
+    mapRef.current?.scrollIntoView({ 
+      behavior: 'smooth',
+      block: 'start'
+    });
+  };
+
   return (
     <Box>
       <Navbar />
       <Hero />
-      <Timeline />
+      <Timeline mapRef={mapRef} />
       <Artists />
       <Schedule />
       <Tickets />
-      <Location />
+      <Location scrollToMap={scrollToMap} />
       <Footer />
     </Box>
   )

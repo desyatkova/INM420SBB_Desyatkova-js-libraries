@@ -18,7 +18,7 @@ import {
   FaWifi,
 } from 'react-icons/fa';
 
-const Location = () => {
+const Location = ({ scrollToMap }) => {
   const amenities = [
     { icon: FaParking, title: 'Free Parking', description: '10,000+ spots available' },
     { icon: FaBus, title: 'Shuttle Service', description: 'From major transit hubs' },
@@ -30,7 +30,7 @@ const Location = () => {
 
   return (
     <Box py={{ base: 16, md: 24 }} bg="gray.50">
-      <Container maxW="container.xl" px={4}>
+      <Container maxW="container.xl" px={4} mx="auto">
         <VStack gap={{ base: 8, md: 12 }}>
           <VStack gap={4} textAlign="center">
             <Heading
@@ -115,7 +115,11 @@ const Location = () => {
                 >
                   <VStack gap={4} color="white" textAlign="center">
                     <Heading size="lg">Interactive Map</Heading>
-                    <Button colorScheme="whiteAlpha" variant="outline">
+                    <Button 
+                      colorScheme="whiteAlpha" 
+                      variant="outline"
+                      onClick={scrollToMap}
+                    >
                       View Full Map
                     </Button>
                   </VStack>

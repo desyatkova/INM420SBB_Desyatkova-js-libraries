@@ -35,7 +35,7 @@ const Navbar = () => {
       bg="purple.800"
       boxShadow="lg"
     >
-      <Container maxW="container.xl" px={4}>
+      <Container maxW="container.xl" px={4} mx="auto">
         <Flex h={16} alignItems="center" justifyContent="space-between">
           <Text fontSize="2xl" fontWeight="bold" color="white">
             Eventarium

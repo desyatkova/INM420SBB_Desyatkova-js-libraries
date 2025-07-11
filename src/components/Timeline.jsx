@@ -5,11 +5,13 @@ import {
   Heading, 
   Text, 
   VStack, 
-  HStack
+  HStack,
+  Grid
 } from '@chakra-ui/react';
 import { useEpg, Epg, Layout } from 'planby';
+import FestivalMap from './FestivalMap';
 
-const Timeline = () => {
+const Timeline = ({ mapRef }) => {
   const [selectedDay, setSelectedDay] = useState('friday');
 
   // Planby channels (stages)
@@ -36,7 +38,6 @@ const Timeline = () => {
     }
   ], []);
 
-  // Helper function to check if event is active at 18:00
   const isEventActive = (since, till, activeTime = '18:00') => {
     const startHour = parseInt(since.split('T')[1].split(':')[0]);
     const startMinute = parseInt(since.split('T')[1].split(':')[1]);
@@ -53,7 +54,6 @@ const Timeline = () => {
     return activeTimeMinutes >= startTime && activeTimeMinutes < endTime;
   };
 
-  // Planby EPG data
   const epgData = useMemo(() => ({
     friday: [
       {
@@ -131,7 +131,6 @@ const Timeline = () => {
         image: 'https://api.dicebear.com/7.x/pixel-art/svg?seed=Phoebe',
         description: 'Indie singer-songwriter'
       },
-      // Early afternoon events
       {
         id: '25',
         channelUuid: 'main-stage',
@@ -150,7 +149,6 @@ const Timeline = () => {
         image: 'https://api.dicebear.com/7.x/pixel-art/svg?seed=Warmup',
         description: 'Pre-show DJ set'
       },
-      // Late night events
       {
         id: '27',
         channelUuid: 'electronic-stage',
@@ -171,7 +169,6 @@ const Timeline = () => {
       }
     ],
     saturday: [
-      // Early events for mobile visibility
       {
         id: '29',
         channelUuid: 'main-stage',
@@ -275,7 +272,6 @@ const Timeline = () => {
       }
     ],
     sunday: [
-      // Early events for mobile visibility
       {
         id: '32',
         channelUuid: 'main-stage',
@@ -379,7 +375,6 @@ const Timeline = () => {
     ]
   }), []);
 
-  // Get the correct date for the selected day
   const getSelectedDate = () => {
     const dates = {
       friday: '2025-07-15',
@@ -412,7 +407,7 @@ const Timeline = () => {
 
   return (
     <Box py={{ base: 16, md: 24 }} bg="gray.50">
-      <Container maxW="container.xl" px={4}>
+      <Container maxW="container.xl" px={4} mx="auto">
         <VStack gap={{ base: 8, md: 12 }}>
           {/* Header */}
           <VStack gap={4} textAlign="center">
@@ -480,6 +475,81 @@ const Timeline = () => {
               />
             </Box>
           </Box>
+
+          {/* Interactive Festival Map */}
+          <VStack gap={4} w="full" ref={mapRef}>
+            <VStack gap={2} textAlign="center">
+              <Heading fontSize="2xl" color="gray.900">
+                FESTIVAL MAP
+              </Heading>
+              <Text fontSize="md" color="gray.600">
+                Explore stage locations and current events
+              </Text>
+            </VStack>
+            
+            <FestivalMap selectedDay={selectedDay} />
+            
+            {/* Map Legend */}
+            <Box w="full" bg="white" p={4} borderRadius="lg" boxShadow="sm" maxW="800px">
+              <Text fontSize="sm" fontWeight="semibold" mb={3} color="gray.700">
+                Festival Map Legend
+              </Text>
+              
+              {/* Stages */}
+              <Text fontSize="xs" fontWeight="semibold" mb={2} color="purple.600">
+                PERFORMANCE STAGES
+              </Text>
+              <Grid templateColumns="repeat(2, 1fr)" gap={2} fontSize="xs" mb={3}>
+                <HStack>
+                  <Box w={4} h={4} borderRadius="full" bg="#8B5CF6" />
+                  <Text>Main Stage</Text>
+                </HStack>
+                <HStack>
+                  <Box w={4} h={4} borderRadius="full" bg="#3B82F6" />
+                  <Text>Electronic Stage</Text>
+                </HStack>
+                <HStack>
+                  <Box w={4} h={4} borderRadius="full" bg="#14B8A6" />
+                  <Text>Indie Stage</Text>
+                </HStack>
+                <HStack>
+                  <Box w={4} h={4} borderRadius="full" bg="#F97316" />
+                  <Text>Acoustic Stage</Text>
+                </HStack>
+              </Grid>
+              
+              {/* Festival Areas */}
+              <Text fontSize="xs" fontWeight="semibold" mb={2} color="teal.600">
+                FESTIVAL AREAS
+              </Text>
+              <Grid templateColumns="repeat(2, 1fr)" gap={2} fontSize="xs">
+                <HStack>
+                  <Box w={3} h={3} borderRadius="full" bg="#EC4899" />
+                  <Text>Rainbow Gate</Text>
+                </HStack>
+                <HStack>
+                  <Box w={3} h={3} borderRadius="full" bg="#10B981" />
+                  <Text>Sunset Plaza</Text>
+                </HStack>
+                <HStack>
+                  <Box w={3} h={3} borderRadius="full" bg="#F59E0B" />
+                  <Text>Vibes Village</Text>
+                </HStack>
+                <HStack>
+                  <Box w={3} h={3} borderRadius="full" bg="#9333EA" />
+                  <Text>Healing Garden</Text>
+                </HStack>
+                <HStack>
+                  <Box w={3} h={3} borderRadius="full" bg="#06B6D4" />
+                  <Text>Neon Lounge</Text>
+                </HStack>
+                <HStack>
+                  <Box w={3} h={3} borderRadius="full" bg="#22C55E" />
+                  <Text>Mystic Woods</Text>
+                </HStack>
+              </Grid>
+            </Box>
+          </VStack>
 
         </VStack>
       </Container>

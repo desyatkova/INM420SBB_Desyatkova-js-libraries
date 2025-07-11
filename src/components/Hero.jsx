@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { FaCalendar, FaMapMarkerAlt } from 'react-icons/fa';
 import Spline from '@splinetool/react-spline';
+import GradientText from "./GradientText.jsx";
 
 const Hero = () => {
   return (
@@ -28,13 +29,6 @@ const Hero = () => {
         h="100vh"
         zIndex={1}
       >
-        {/*<Spline */}
-        {/*  scene="https://prod.spline.design/V8lHj76u6-5lZcKZ/scene.splinecode"*/}
-        {/*  style={{*/}
-        {/*    width: '100%',*/}
-        {/*    height: '100%',*/}
-        {/*  }}*/}
-        {/*/>*/}
         <Spline
           scene="https://prod.spline.design/fbZURuiIHKnqqTEj/scene.splinecode"
           style={{
@@ -44,12 +38,12 @@ const Hero = () => {
         />
       </Box>
 
-      {/* Content Overlay - Centered */}
-      <Container 
+      <Container
         maxW="container.xl" 
         position="relative" 
         h="full" 
         zIndex={3}
+        mx="auto"
       >
         <VStack
           justify="center"
@@ -77,9 +71,16 @@ const Hero = () => {
               lineHeight="0.8"
               mb={4}
             >
-              SUMMER
-              <br />
-              FESTIVAL
+              <GradientText
+                  colors={["#40ffaa", "#4079ff", "#40ffaa", "#4079ff", "#40ffaa"]}
+                  animationSpeed={3}
+                  showBorder={false}
+                  className="custom-class"
+              >
+                SUMMER
+                <br />
+                FESTIVAL
+              </GradientText>
             </Heading>
           </VStack>
 
